@@ -1,0 +1,79 @@
+{% load static %}
+{% load blog_theme_tags  %}
+<html>
+<head>
+	<title>{{title}}</title>
+	<link type="text/css" href="{% static 'blog_theme/css/styles.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'blog_theme/images/main.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" >
+<tr><td>
+<!--TOP MENU ---->
+{% block mainmenu %}
+		<div class="header">
+			<ul id="mainmenu" class="mainmenu">
+			<li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
+{% get_menu as menu %}
+	{% for m in menu %}
+	{% if menu_selected == m.url_name %}
+		<li class="selected">{{m.title}}</li>
+	{% else %}
+		<li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+	{% endif %}
+{% endfor %}
+	<!--ADMIN				-->
+			<li><a href="/admin">admin</a></li>
+	<!--ADMIN				-->
+			</ul>
+			<div class="clear"></div>
+		</div>
+{% endblock mainmenu %}
+
+<!--TOP MENU ---->
+
+<table class="table-content" border=0 cellpadding="0" cellspacing="0">
+<tr>
+<!-- Sidebar слева -->
+	<td valign="top" class="left-chapters">
+	<ul id="leftchapters">
+
+{% show_categories cat_selected=cat_selected %}
+
+
+
+		<li class="share">
+		<p>Мой GitHub</p>
+		<a class="share-yt" href="https://github.com/Sarge322" target="_blank" rel="nofollow"></a>
+		</li>
+	</ul>
+</td>
+<!-- Конец Sidebar'а -->
+<td valign="top" class="content">
+	<!-- Хлебные крошки -->
+	{% block breadcrumbs %}
+	{% endblock %}
+
+<!-- Блок контента -->
+	<div class="content-text">
+{% block content %}
+{% endblock %}
+	</div>
+<!-- Конец блока контента -->
+
+</td></tr></table>
+</td></tr>
+<!-- Footer -->
+<tr><td valign=top>
+	<div id="footer">
+		<p>&copy; 2021 Частичное или полное копирование информации с данного сайта для распространения на других ресурсах, в том числе и бумажных, строго запрещено.</p>
+	</div>
+</td></tr></table>
+<!-- Конец footer'а и страницы -->
+</body>
+</html>
+
+
+
