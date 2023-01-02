@@ -22,8 +22,6 @@ def about(request):
 
 
 def python_fiddle(request, fid_id):
-    print(request.GET)
-    print(f"POST: {request.POST}")
     return HttpResponse(f"Песочница для кода питона {fid_id}")
 
 
