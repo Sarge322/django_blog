@@ -1,6 +1,5 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from mdeditor.widgets import MDEditorWidget
 
 from .models import *
 
@@ -15,10 +14,9 @@ class AddPostForm(forms.ModelForm):
         fields = ['title', 'content', 'photo', 'is_published', 'cat']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': MDEditorWidget,
+            'content': forms.Textarea(attrs={'cols': 70, 'rows':10})
         }
 
-    content = MDTextField()
     def clean_title(self):
         title = self.cleaned_data['title']
         if len(title) > 200:
