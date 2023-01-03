@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import *
 
 
+
 class BlogThemeAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'time_created', 'photo', 'is_published')
     list_display_links = ('id', 'title')

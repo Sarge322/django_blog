@@ -13,7 +13,8 @@
         <p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
 {% endif %}
         <h2>{{p.title}}</h2>
-        <p>{{p.content|linebreaks|truncatewords:40}}</p>
+{#        <p>{{p.content|linebreaks|truncatewords:40}}</p>#}
+        <p>{{p.content}}</p>
         <div class="clear"></div>
         <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a> </p>
     </li>
