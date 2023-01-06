@@ -4,8 +4,9 @@
 <h1>{{ title }}</h1>
 <form enctype="multipart/form-data" action="{% url 'add_page' %}" method="post" >
     {% csrf_token %}
-    {{ form.media }}
+
     <div class="form-error">{{ form.non_field_errors }}</div>
+    {{ form.media }}
     {% for f in form %}
 {#        <p><label class="form-label" for="{{ forom.title.id_for_label }}">{{ form.title.label }}: </label> {{ form.title }} </p>#}
 {#        <div class="form-error">{{ form.title.errors }}</div>#}

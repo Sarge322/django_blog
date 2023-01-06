@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from .models import *
+from ckeditor.widgets import CKEditorWidget
 
 
 class AddPostForm(forms.ModelForm):
@@ -14,7 +15,6 @@ class AddPostForm(forms.ModelForm):
         fields = ['title', 'content', 'photo', 'is_published', 'cat']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-input'}),
-            'content': forms.Textarea(attrs={'cols': 70, 'rows':10})
         }
 
     def clean_title(self):

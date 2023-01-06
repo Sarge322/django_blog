@@ -208,11 +208,14 @@ div.button {
 }
 
 .content {
-	padding: 40px 20px 20px 40px;
+	padding: 20px 10% 20px 10%;
 	width: 100%;
+	text-align: justify;
 	box-sizing: border-box;
 }
-
+div.content {
+	width: 50%;
+}
 ul.breadcrumbs {
 	margin: 0;
 	padding: 0;

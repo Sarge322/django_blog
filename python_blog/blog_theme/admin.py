@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import *
 
+from .models import *
 
 
 class BlogThemeAdmin(admin.ModelAdmin):
@@ -10,7 +10,6 @@ class BlogThemeAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     list_filter = ('is_published', 'time_created')
     prepopulated_fields = {'slug': ('title',)}
-
 
 
 class CategoryAdmin(admin.ModelAdmin):

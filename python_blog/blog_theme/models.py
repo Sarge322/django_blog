@@ -2,14 +2,14 @@ from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
 from django.db.models.signals import pre_save
+from mdeditor.fields import MDTextField
 from pytils.translit import slugify
-
 
 
 class Blog_theme(models.Model):
     title = models.CharField(max_length=255, verbose_name='Заголовок')
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
-    content = models.TextField(null=True, blank=True)
+    content = MDTextField()
     photo = models.ImageField(upload_to="photos/%Y/%m/%d", verbose_name='Фото')
     time_created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     time_updated = models.DateTimeField(auto_now=True, verbose_name='Изменено')

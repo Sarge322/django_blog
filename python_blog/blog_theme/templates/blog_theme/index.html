@@ -14,7 +14,7 @@
         <p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
 {% endif %}
         <h2>{{p.title}}</h2>
-        <p>{{p.content|markdown|truncatewords:80}}</p>
+        <p>{{p.content|safe|linebreaksbr|truncatewords:80}}</p>
         <div class="clear"></div>
         <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Читать пост</a> </p>
     </li>
