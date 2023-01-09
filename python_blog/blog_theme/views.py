@@ -54,6 +54,7 @@ def pageNotFound(request, exception):
 
 
 class AddPage(CreateView):
+    #связываем класс представления с классом формы из forms.py
     form_class = AddPostForm
     template_name = 'blog_theme/addpage.html '
 
@@ -119,12 +120,15 @@ class Blog_themeCategory(ListView):
         # выбираем только те записи, которым соответствует категория по указанному слагу,
         # через kwargs['cat_slug'] мы можем получить переменную 'cat_slug', которая прилетает к нам
         # через url (path('category/<slug:cat_slug>/',), теперь фильтруем все в таблице Blog_theme
-        # по фильтру 'cat_slug', если он совпадает с _slug категории cat_, связанной с этой записью.
+        # по фильтру 'cat_slug', если он совпадает с _slug категории cat_, связанной с этой записью,
+        # ну и статья должна быть опубликована.
         return Blog_theme.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        # присваиваем названию имя категории первого поста в коллекции полученных записей.
         context['title'] = str(context['posts'][0].cat)
+        # аналогично, из коллекции вытаскиваем id категории первого поста (возможно единственного)
         context['cat_selected'] = context['posts'][0].cat_id
         return context
 # def show_category(request, cat_slug):
