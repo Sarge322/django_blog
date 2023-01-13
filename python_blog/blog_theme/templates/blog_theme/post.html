@@ -1,5 +1,5 @@
 {% extends 'blog_theme/base.html' %}
-{% load markdown_extras %}
+{% load markdownify %}
 
 {% block content %}
 <h1>{{post.title}}</h1>
@@ -8,5 +8,5 @@
 <p><img class="img-article-left" src="{{post.photo.url}}"></p>
 {% endif %}
 
-{{post.content|markdown|safe|linebreaksbr}}
+{{ post.content|markdownify }}
 {% endblock %}

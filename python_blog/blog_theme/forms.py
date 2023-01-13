@@ -2,7 +2,6 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from .models import *
-from ckeditor.widgets import CKEditorWidget
 
 
 class AddPostForm(forms.ModelForm):

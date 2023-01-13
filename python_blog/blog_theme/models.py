@@ -25,7 +25,7 @@ class Blog_theme(models.Model):
     class Meta:
         verbose_name = 'Темы:'
         verbose_name_plural = 'Темы:'
-        ordering = ['time_created', 'title']
+        ordering = ['-time_updated', 'title']
 
 
 @receiver(pre_save, sender=Blog_theme)
