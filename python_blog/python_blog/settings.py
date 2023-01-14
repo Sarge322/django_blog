@@ -187,7 +187,7 @@ MARKDOWNIFY = {
             'markdown.extensions.codehilite'
         ],
         "STRIP": False,
-        "WHITELIST_TAGS": [
+        "WHITELIST_TAGS": [   
             'a',
             'abbr',
             'acronym',
