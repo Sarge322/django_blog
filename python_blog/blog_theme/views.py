@@ -18,7 +18,10 @@ from .models import *
 #     return render(request, 'blog_theme/index.html', context=context)
 
 # создаем класс главной страницы
-class BlogHome(ListView):
+from .utils import DataMixin
+
+
+class BlogHome(DataMixin, ListView):
     # атрибут model ссылается на модель Blog_theme, создается список всех записей модели Blog_theme
     model = Blog_theme
     # прописываем путь нашей страницы
@@ -30,11 +33,17 @@ class BlogHome(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         # обращаемся к базовому классу ListView и берем существующий контекст, чтобы не создать новый пустой и все затереть
         context = super().get_context_data(**kwargs)
-        # меняем атрибут контекста title, отображение имени вкладки
-        context['title'] = 'Главная страница'
-        # передаем дефолтный указатель выбранной категории
-        context['cat_selected'] = 0
-        return context
+        #через миксин DataMixin получаеи второй словарь с title='Главная страница',
+        #теперь нужно их обьединить и отдать
+        c_def = self.get_user_context(title='Главная страница')
+
+        # # меняем атрибут контекста title, отображение имени вкладки
+        # context['title'] = 'Главная страница'
+        # # передаем дефолтный указатель выбранной категории
+        # context['cat_selected'] = 0
+        res = dict(list(context.items()) + list(c_def.items))
+        print(res)
+        return res
 
     # фильтруем только опубликованные статьи (с галкой is_published)
     def get_queryset(self):

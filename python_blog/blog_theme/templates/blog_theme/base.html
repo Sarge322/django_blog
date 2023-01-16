@@ -40,11 +40,16 @@
 <!-- Sidebar слева -->
 	<td valign="top" class="left-chapters">
 	<ul id="leftchapters">
+{# cats through show_categories tag in tagtemplate #}
+{#{% show_categories cat_selected=cat_selected %}#}
+{% for c in cats %}
 
-{% show_categories cat_selected=cat_selected %}
-
-
-
+	{% if c.slug == cat_selected %}
+			<li class="selected">{{c.name}}</li>
+	{% else %}
+			<li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
+	{% endif %}
+{% endfor %}
 		<li class="share">
 		<p>Мой GitHub</p>
 		<a class="share-yt" href="https://github.com/Sarge322" target="_blank" rel="nofollow"></a>
