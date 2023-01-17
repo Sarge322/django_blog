@@ -1,5 +1,7 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import AddPostForm
@@ -41,9 +43,10 @@ class BlogHome(DataMixin, ListView):
         # context['title'] = 'Главная страница'
         # # передаем дефолтный указатель выбранной категории
         # context['cat_selected'] = 0
-        res = dict(list(context.items()) + list(c_def.items))
-        print(res)
-        return res
+        context.update(c_def)
+
+        print(context)
+        return context
 
     # фильтруем только опубликованные статьи (с галкой is_published)
     def get_queryset(self):
@@ -62,14 +65,17 @@ def pageNotFound(request, exception):
     return HttpResponseNotFound("Page not found!!!")
 
 
-class AddPage(CreateView):
+class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     #связываем класс представления с классом формы из forms.py
     form_class = AddPostForm
     template_name = 'blog_theme/addpage.html '
+    success_url = reverse_lazy('home')
+    login_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Добавление статьи'
+        c_def = self.get_user_context(title='Добавление статьи')
+        context.update(c_def)
         return context
 
 
@@ -107,7 +113,7 @@ def login(request):
 #
 #     return render(request, 'blog_theme/post.html', context=context)
 
-class ShowPost(DetailView):
+class ShowPost(DataMixin, DetailView):
     model = Blog_theme
     template_name = 'blog_theme/post.html'
     slug_url_kwarg = 'post_slug'
@@ -115,11 +121,12 @@ class ShowPost(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = context['post']
+        c_def = self.get_user_context(title=context['post'])
+        context.update(c_def)
         return context
 
 
-class Blog_themeCategory(ListView):
+class Blog_themeCategory(DataMixin, ListView):
     model = Blog_theme
     template_name = 'blog_theme/index.html'
     context_object_name = 'posts'
@@ -134,11 +141,16 @@ class Blog_themeCategory(ListView):
         return Blog_theme.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
+
         context = super().get_context_data(**kwargs)
-        # присваиваем названию имя категории первого поста в коллекции полученных записей.
-        context['title'] = str(context['posts'][0].cat)
-        # аналогично, из коллекции вытаскиваем id категории первого поста (возможно единственного)
-        context['cat_selected'] = context['posts'][0].cat_id
+        # # присваиваем названию имя категории первого поста в коллекции полученных записей.
+        # context['title'] = str(context['posts'][0].cat)
+        # # аналогично, из коллекции вытаскиваем id категории первого поста (возможно единственного)
+        # context['cat_selected'] = context['posts'][0].cat_id
+        # Формирование через миксин DataMixin
+        c_def = self.get_user_context(title='Категория' + str(context['posts'][0].cat),
+                                        cat_selected=self.kwargs['cat_slug'])
+        context.update(c_def)
         return context
 # def show_category(request, cat_slug):
 #     posts = Blog_theme.objects.filter(cat__slug=cat_slug)

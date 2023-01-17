@@ -42,13 +42,20 @@
 	<ul id="leftchapters">
 {# cats through show_categories tag in tagtemplate #}
 {#{% show_categories cat_selected=cat_selected %}#}
+{% if cat_selected == 0 %}
+			<li class="selected">Все категории</li>
+{% else %}
+			<li><a href="{% url 'home' %}">Все категории</a></li>
+{% endif %}
 {% for c in cats %}
 
+{% if c.blog_theme__count > 0 %}
 	{% if c.slug == cat_selected %}
 			<li class="selected">{{c.name}}</li>
 	{% else %}
 			<li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
 	{% endif %}
+{% endif %}
 {% endfor %}
 		<li class="share">
 		<p>Мой GitHub</p>
