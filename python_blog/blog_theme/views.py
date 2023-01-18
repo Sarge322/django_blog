@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -24,6 +25,7 @@ from .utils import DataMixin
 
 
 class BlogHome(DataMixin, ListView):
+    paginate_by = 2
     # атрибут model ссылается на модель Blog_theme, создается список всех записей модели Blog_theme
     model = Blog_theme
     # прописываем путь нашей страницы
@@ -33,6 +35,7 @@ class BlogHome(DataMixin, ListView):
 
     # создаем функцию для динамического и стат. контекста
     def get_context_data(self, *, object_list=None, **kwargs):
+
         # обращаемся к базовому классу ListView и берем существующий контекст, чтобы не создать новый пустой и все затереть
         context = super().get_context_data(**kwargs)
         #через миксин DataMixin получаеи второй словарь с title='Главная страница',
@@ -44,8 +47,6 @@ class BlogHome(DataMixin, ListView):
         # # передаем дефолтный указатель выбранной категории
         # context['cat_selected'] = 0
         context.update(c_def)
-
-        print(context)
         return context
 
     # фильтруем только опубликованные статьи (с галкой is_published)
@@ -54,7 +55,12 @@ class BlogHome(DataMixin, ListView):
 
 
 def about(request):
-    return render(request, 'blog_theme/about.html', {'title': 'About'})
+    contact_list = Blog_theme.objects.all()
+    paginator = Paginator(contact_list, 3)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'blog_theme/about.html', {'page_obj': page_obj, 'title': 'About'})
 
 
 def python_fiddle(request, fid_id):
@@ -127,6 +133,7 @@ class ShowPost(DataMixin, DetailView):
 
 
 class Blog_themeCategory(DataMixin, ListView):
+    paginate_by = 3
     model = Blog_theme
     template_name = 'blog_theme/index.html'
     context_object_name = 'posts'
