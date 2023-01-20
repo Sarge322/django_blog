@@ -1,120 +1,138 @@
 {% load static %}
-{% load blog_theme_tags  %}
+{% load blog_theme_tags %}
 <html>
 <head>
-	<title>{{title}}</title>
-	<link href="{% static 'blog_theme/css/styles.css' %}" type="text/css"  rel="stylesheet" />
-	<link href="{% static 'blog_theme/css/codehilite_styles.css' %}" type="text/css" rel="stylesheet" />
+    <title>{{ title }}</title>
+    <link href="{% static 'blog_theme/css/styles.css' %}" type="text/css" rel="stylesheet"/>
+    <link href="{% static 'blog_theme/css/codehilite_styles.css' %}" type="text/css" rel="stylesheet"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="shortcut icon" href="{% static 'blog_theme/images/main.ico' %}" type="image/x-icon"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'blog_theme/images/main.ico' %}" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<table class="table-page" >
-<tr><td>
-<!--TOP MENU ---->
-{% block mainmenu %}
-		<div class="header">
-			<ul id="mainmenu" class="mainmenu">
-			<li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
-{% get_menu as menu %}
-	{% for m in menu %}
-    {% if not forloop.last %}
-        {% if menu_selected == m.url_name %}
-            <li class="selected">{{m.title}}</li>
-        {% else %}
-            <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
-        {% endif %}
-    {% endif %}
-{% endfor %}
-    <!-- sign in				-->
-            <li class="last"> <a href="{% url 'register' %}">Регистрация </a>|<a href="{% url 'login' %}"> Войти</a> </li>
-    <!-- sign in				-->
-	<!--ADMIN				-->
-			<li><a href="/admin">admin</a></li>
-	<!--ADMIN				-->
-			</ul>
-			<div class="clear"></div>
-		</div>
-{% endblock mainmenu %}
+<table class="table-page">
+    <tr>
+        <td>
+            <!--TOP MENU ---->
+            {% block mainmenu %}
+                <div class="header">
+                    <ul id="mainmenu" class="mainmenu">
+                        <li class="logo"><a href="{% url 'home' %}">
+                            <div class="logo"></div>
+                        </a></li>
+                        {% get_menu as menu %}
+                        {% for m in menu %}
+                            {% if not forloop.last %}
+                                {% if menu_selected == m.url_name %}
+                                    <li class="selected">{{ m.title }}</li>
+                                {% else %}
+                                    <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {{ request.user.is_autenticated }}
+                        {% if request.user.is_authenticated %}
+                            <!-- sign in	unsigned			-->
+                            <li class="last">{{ user.username }} | <a href="{% url 'logout' %}">Выйти</a></li>
+                            <!-- sign in				-->
+                        {% else %}
+                            <!-- exit	signed			-->
+                            <li class="last"><a href="{% url 'register' %}">Регистрация </a>|<a
+                                    href="{% url 'login' %}"> Войти</a></li>
+                            <!-- exit	signed			-->
+                        {% endif %}
+                        <!--ADMIN			    	-->
+                        <li><a href="/admin">admin</a></li>
+                        <!--ADMIN				---->
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            {% endblock mainmenu %}
 
-<!--TOP MENU ---->
+            <!--TOP MENU ---->
 
-<table class="table-content" border=0 cellpadding="0" cellspacing="0">
-<tr>
-<!-- Sidebar слева -->
-	<td valign="top" class="left-chapters">
-	<ul id="leftchapters">
-{# cats through show_categories tag in tagtemplate #}
-{#{% show_categories cat_selected=cat_selected %}#}
-{% if cat_selected == 0 %}
-			<li class="selected">Все категории</li>
-{% else %}
-			<li><a href="{% url 'home' %}">Все категории</a></li>
-{% endif %}
-{% for c in cats %}
+            <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+                <tr>
+                    <!-- Sidebar слева -->
+                    <td valign="top" class="left-chapters">
+                        <ul id="leftchapters">
+                            {# cats through show_categories tag in tagtemplate #}
+                            {#{% show_categories cat_selected=cat_selected %}#}
+                            {% if cat_selected == 0 %}
+                                <li class="selected">Все категории</li>
+                            {% else %}
+                                <li><a href="{% url 'home' %}">Все категории</a></li>
+                            {% endif %}
+                            {% for c in cats %}
 
-{% if c.blog_theme__count > 0 %}
-	{% if c.slug == cat_selected %}
-			<li class="selected">{{c.name}}</li>
-	{% else %}
-			<li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>
-	{% endif %}
-{% endif %}
-{% endfor %}
-		<li class="share">
-		<p>Мой GitHub</p>
-		<a class="share-yt" href="https://github.com/Sarge322" target="_blank" rel="nofollow"></a>
-		</li>
-	</ul>
-</td>
-<!-- Конец Sidebar'а -->
-<td valign="top" class="content">
-	<!-- Хлебные крошки -->
-	{% block breadcrumbs %}
-	{% endblock %}
+                                {% if c.blog_theme__count > 0 %}
+                                    {% if c.slug == cat_selected %}
+                                        <li class="selected">{{ c.name }}</li>
+                                    {% else %}
+                                        <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            <li class="share">
+                                <p>Мой GitHub</p>
+                                <a class="share-yt" href="https://github.com/Sarge322" target="_blank"
+                                   rel="nofollow"></a>
+                            </li>
+                        </ul>
+                    </td>
+                    <!-- Конец Sidebar'а -->
+                    <td valign="top" class="content">
+                        <!-- Хлебные крошки -->
+                        {% block breadcrumbs %}
+                        {% endblock %}
 
-<!-- Блок контента -->
-	<div>
-{#	<div class="content-text">#}
-{% block content %}
-{% endblock %}
-    {% if page_obj.has_other_pages %}
-        <nav class="list-pages">
-            <ul>
-            {% if page_obj.has_previous %}
-                <li class="page-num">
-                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
-                </li>
-            {% endif %}
-                {% for p in paginator.page_range %}
-                    {% if page_obj.number == p %}
-                    <li class="page-num page-num-selected">{{ p }}</li>
-                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-                    <li class="page-num">
-                    <a href="?page={{ p }}">{{ p }}</a>
-                    </li>
-                {% endif %}
-                {% endfor %}
-            {% if page_obj.has_next %}
-                <li class="page-num">
-                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
-                </li>
-            {% endif %}
-            </ul>
-        </nav>
-    {% endif %}
-	</div>
-<!-- Конец блока контента -->
+                        <!-- Блок контента -->
+                        <div>
+                            {#	<div class="content-text">#}
+                            {% block content %}
+                            {% endblock %}
+                            {% if page_obj.has_other_pages %}
+                                <nav class="list-pages">
+                                    <ul>
+                                        {% if page_obj.has_previous %}
+                                            <li class="page-num">
+                                                <a href="?page={{ page_obj.previous_page_number }}">&lt;</a>
+                                            </li>
+                                        {% endif %}
+                                        {% for p in paginator.page_range %}
+                                            {% if page_obj.number == p %}
+                                                <li class="page-num page-num-selected">{{ p }}</li>
+                                            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                                <li class="page-num">
+                                                    <a href="?page={{ p }}">{{ p }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                            <li class="page-num">
+                                                <a href="?page={{ page_obj.next_page_number }}">&gt;</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            {% endif %}
+                        </div>
+                        <!-- Конец блока контента -->
 
-</td></tr></table>
-</td></tr>
-<!-- Footer -->
-<tr><td valign=top>
-	<div id="footer">
-		<p>&copy; 2023, Кто не спрятался, я не виноват!</p>
-	</div>
-</td></tr></table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+        <td valign=top>
+            <div id="footer">
+                <p>&copy; 2023, Кто не спрятался, я не виноват!</p>
+            </div>
+        </td>
+    </tr>
+</table>
 <!-- Конец footer'а и страницы -->
 </body>
 </html>

@@ -1,12 +1,13 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView
 
-from .forms import AddPostForm, RegisterUserForm
+from .forms import AddPostForm, RegisterUserForm, LoginUserForm
 from .models import *
 
 
@@ -37,7 +38,7 @@ class BlogHome(DataMixin, ListView):
     # создаем функцию для динамического и стат. контекста
     def get_context_data(self, *, object_list=None, **kwargs):
 
-        # обращаемся к базовому классу ListView и берем существующий контекст, чтобы не создать новый пустой и все затереть
+        # обращаемся к базовому классу ListView и берем существующий контекст, чтобы не создать новый пустой и не затереть все
         context = super().get_context_data(**kwargs)
         #через миксин DataMixin получаеи второй словарь с title='Главная страница',
         #теперь нужно их обьединить и отдать
@@ -104,9 +105,9 @@ class AddPage(LoginRequiredMixin, DataMixin, CreateView):
 def contact(request):
     return HttpResponse("Обратная связь")
 
-
-def login(request):
-    return HttpResponse("Авторизация")
+#
+# def login(request):
+#     return HttpResponse("Авторизация")
 
 
 # def show_post(request, post_slug):
@@ -183,3 +184,29 @@ class RegisterUser(DataMixin, CreateView):
         c_def = self.get_user_context(title="Регистрация")
         context.update(c_def)
         return context
+    # django func, called if registration was succesful
+    def form_valid(self, form):
+        user = form.save()
+        # login is standart django func, need import, autolotin with
+        # previously saved user=form.save() fields values
+        login(self.request, user)
+        return redirect('home')
+
+
+class LoginUser(DataMixin, LoginView):
+    form_class = LoginUserForm
+    template_name = 'blog_theme/login.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Авторизация')
+        context.update(c_def)
+        return context
+
+    # def get_success_url(self):
+    #     return reverse_lazy('home')
+
+def logout_user(request):
+    # logout there is standart django func for logout user, need import
+    logout(request)
+    return redirect('login')

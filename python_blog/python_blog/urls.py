@@ -27,12 +27,17 @@ from python_blog import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog_theme.urls')),
-    path('mdeditor/', include('mdeditor.urls'))
+    path('mdeditor/', include('mdeditor.urls')),
+
 ]
 if settings.DEBUG:
+    from django.urls import include, path
+
+    urlpatterns = [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ] + urlpatterns
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-else:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 handler404 = pageNotFound
