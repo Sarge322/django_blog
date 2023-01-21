@@ -22,12 +22,12 @@
                         </a></li>
                         {% get_menu as menu %}
                         {% for m in menu %}
-                            {% if not forloop.last %}
+
                                 {% if menu_selected == m.url_name %}
                                     <li class="selected">{{ m.title }}</li>
                                 {% else %}
                                     <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
-                                {% endif %}
+
                             {% endif %}
                         {% endfor %}
                         {{ request.user.is_autenticated }}

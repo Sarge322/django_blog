@@ -48,8 +48,7 @@ INSTALLED_APPS = [
     'markdown',
     'bleach',
     'debug_toolbar',
-
-
+    'captcha',
 ]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
@@ -78,7 +77,7 @@ INTERNAL_IPS = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -157,6 +156,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = '/'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': os.path.join(BASE_DIR, 'blog_cache'),
+    }
+}
 
 MDEDITOR_CONFIGS = {
     'default': {

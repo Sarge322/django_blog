@@ -5,9 +5,9 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, FormView
 
-from .forms import AddPostForm, RegisterUserForm, LoginUserForm
+from .forms import AddPostForm, RegisterUserForm, LoginUserForm, ContactForm
 from .models import *
 
 
@@ -53,7 +53,7 @@ class BlogHome(DataMixin, ListView):
 
     # фильтруем только опубликованные статьи (с галкой is_published)
     def get_queryset(self):
-        return Blog_theme.objects.filter(is_published=True)
+        return Blog_theme.objects.filter(is_published=True).select_related('cat')
 
 
 def about(request):
@@ -101,11 +101,23 @@ class AddPage(LoginRequiredMixin, DataMixin, CreateView):
 #         form = AddPostForm()
 #     return render(request, 'blog_theme/addpage.html', {'form': form, 'title': 'Add new post'})
 
+class ContactFormView(DataMixin, FormView):
+    form_class = ContactForm
+    template_name = 'blog_theme/contact.html'
+    success_url = reverse_lazy('home')
 
-def contact(request):
-    return HttpResponse("Обратная связь")
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Обратная связь')
+        context.update(c_def)
+        return context
 
-#
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        return redirect('home')
+
+
+
 # def login(request):
 #     return HttpResponse("Авторизация")
 
@@ -147,7 +159,7 @@ class Blog_themeCategory(DataMixin, ListView):
         # через url (path('category/<slug:cat_slug>/',), теперь фильтруем все в таблице Blog_theme
         # по фильтру 'cat_slug', если он совпадает с _slug категории cat_, связанной с этой записью,
         # ну и статья должна быть опубликована.
-        return Blog_theme.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
+        return Blog_theme.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True).select_related('cat')
 
     def get_context_data(self, *, object_list=None, **kwargs):
 
