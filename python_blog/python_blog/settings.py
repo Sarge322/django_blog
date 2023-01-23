@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog_theme.apps.BlogThemeConfig',
     'mdeditor',
-    'pygments',
+    # 'pygments',
     'markdownify',
     'markdown',
     'bleach',
