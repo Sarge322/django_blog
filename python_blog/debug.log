@@ -1,0 +1,55 @@
+"GET /about/ HTTP/1.1" 200 4293
+"GET /static/blog_theme/css/codehilite_styles.css HTTP/1.1" 304 0
+"GET /addpage/ HTTP/1.1" 200 9606
+"GET /static/mdeditor/js/jquery.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/css/editormd.css HTTP/1.1" 304 0
+"GET /static/mdeditor/js/editormd.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/languages/en.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/addon/dialog/dialog.css HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/addon/search/matchesonscrollbar.css HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/codemirror.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/codemirror.min.css HTTP/1.1" 304 0
+"GET /static/mdeditor/images/loading.gif HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/modes.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/codemirror/addons.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/marked.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/fonts/fontawesome-webfont.woff2?v=4.3.0 HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/prettify.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/raphael.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/underscore.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/flowchart.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/jquery.flowchart.min.js HTTP/1.1" 304 0
+"GET /static/mdeditor/js/lib/sequence-diagram.min.js HTTP/1.1" 304 0
+C:\Users\Tom\PycharmProjects\django_blog\python_blog\python_blog\settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /category/frejmvork-django/ HTTP/1.1" 200 11289
+Not Found: /media/photos/2023/01/15/scale_1200.webp
+"GET /media/photos/2023/01/15/scale_1200.webp HTTP/1.1" 404 17
+"GET /category/basic_level/ HTTP/1.1" 200 5620
+Not Found: /media/photos/2023/01/05/Lukashenko_potato_big.jpg
+"GET /media/photos/2023/01/05/Lukashenko_potato_big.jpg HTTP/1.1" 404 17
+"GET / HTTP/1.1" 200 23103
+Not Found: /media/photos/2023/01/15/scale_1200.webp
+"GET /media/photos/2023/01/15/scale_1200.webp HTTP/1.1" 404 17
+Not Found: /media/photos/2023/01/02/543-9a6d5dc5b946eb9a62d2f62422af011c.png
+"GET /media/photos/2023/01/02/543-9a6d5dc5b946eb9a62d2f62422af011c.png HTTP/1.1" 404 17
+Not Found: /media/photos/2023/01/05/Lukashenko_potato_big.jpg
+"GET /media/photos/2023/01/05/Lukashenko_potato_big.jpg HTTP/1.1" 404 17
+Not Found: /media/photos/2023/01/03/iStock-579733578-e1573574017848-1024x499.jpg
+Not Found: /media/photos/2023/01/02/scale_1200.webp
+"GET /media/photos/2023/01/03/iStock-579733578-e1573574017848-1024x499.jpg HTTP/1.1" 404 17
+"GET /media/photos/2023/01/02/scale_1200.webp HTTP/1.1" 404 17
+Not Found: /media/photos/2022/12/28/84482761-e1af-4749-ac54-ac2d26e2e8fb.jpg
+Not Found: /media/photos/2023/01/02/slug-3612269_1.jpg
+"GET /media/photos/2022/12/28/84482761-e1af-4749-ac54-ac2d26e2e8fb.jpg HTTP/1.1" 404 17
+"GET /media/photos/2023/01/02/slug-3612269_1.jpg HTTP/1.1" 404 17
+"GET /category/frejmvork-django/ HTTP/1.1" 200 11289
+Not Found: /media/photos/2023/01/15/scale_1200.webp
+"GET /media/photos/2023/01/15/scale_1200.webp HTTP/1.1" 404 17
+"GET /category/basic_level/ HTTP/1.1" 200 5620
+Not Found: /media/photos/2023/01/05/Lukashenko_potato_big.jpg
+"GET /media/photos/2023/01/05/Lukashenko_potato_big.jpg HTTP/1.1" 404 17
+"GET /addpage/ HTTP/1.1" 200 9606
+"GET /contact/ HTTP/1.1" 200 5795
+"GET /captcha/image/c2621c38513d157e9dd5ef88a587075b0d2568d3/ HTTP/1.1" 200 4388
+C:\Users\Tom\PycharmProjects\django_blog\python_blog\python_blog\settings.py changed, reloading.
