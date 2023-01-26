@@ -58,11 +58,12 @@ class BlogHome(DataMixin, ListView):
 
 def about(request):
     contact_list = Blog_theme.objects.all()
-    paginator = Paginator(contact_list, 3)
+    # paginator = Paginator(contact_list, 3)
 
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request, 'blog_theme/about.html', {'page_obj': page_obj, 'title': 'About'})
+    # page_obj = paginator.get_page(page_number)
+    # return render(request, 'blog_theme/about.html', {'page_obj': page_obj, 'title': 'About'})
+    return render(request, 'blog_theme/about.html', {'title': 'About'})
 
 
 def python_fiddle(request, fid_id):
@@ -89,15 +90,16 @@ def pageNotFound(request, exception):
 
 
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
-    #связываем класс представления с классом формы из forms.py
+    # связываем класс представления с классом формы из forms.py
     form_class = AddPostForm
     template_name = 'blog_theme/addpage.html '
     success_url = reverse_lazy('home')
     login_url = reverse_lazy('home')
+    raise_exception = True
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Добавление статьи')
+        c_def = self.get_user_context(title='Обратная связь')
         context.update(c_def)
         return context
 
