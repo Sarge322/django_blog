@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="251c7023-55cd-4dda-ae72-504bed03d1ad" name="serge71c.beget.tech  " url="http://serge71c.beget.tech">
+        <fileTransfer rootFolder="/home/s/serge71c" accessType="SFTP" host="serge71c.beget.tech" port="22" sshConfigId="630c12fa-df04-447f-a902-a4bf3175d5dd" sshConfig="serge71c@serge71c.beget.tech:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

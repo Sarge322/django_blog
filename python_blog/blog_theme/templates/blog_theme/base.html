@@ -13,7 +13,7 @@
 <table class="table-page" border=0 cellpadding="0" cellspacing="0">
     <tr>
         <td valign=top>
-            <!--TOP MENU ---->
+<!--TOP MENU ---->
             {% block mainmenu %}
                 <div class="header">
                     <ul id="mainmenu" class="mainmenu">
@@ -22,14 +22,9 @@
                         </a></li>
                         {% get_menu as menu %}
                         {% for m in menu %}
-
-                            {% if menu_selected == m.url_name %}
-                                <li class="selected">{{ m.title }}</li>
-                            {% else %}
                                 <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
-
-                            {% endif %}
                         {% endfor %}
+<!--TOP MENU ---->
                         {{ request.user.is_autenticated }}
                         {% if request.user.is_authenticated %}
                             <!-- sign in	unsigned			-->
