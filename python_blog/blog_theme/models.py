@@ -24,7 +24,7 @@ class Blog_theme(models.Model):
         return reverse('post', kwargs={'post_slug': self.slug})
 
     class Meta:
-        verbose_name = 'Темы:'
+        verbose_name = 'Темы1:'
         verbose_name_plural = 'Темы:'
         ordering = ['-time_updated', 'title']
 

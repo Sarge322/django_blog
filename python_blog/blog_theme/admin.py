@@ -14,6 +14,7 @@ class BlogThemeAdmin(admin.ModelAdmin):
     fields = ('title', 'slug', 'cat', 'content','get_html_photo', 'photo', 'is_published', 'time_created', 'time_updated')
     readonly_fields = ('time_created', 'time_updated', 'get_html_photo')
     save_on_top = True
+
     def get_html_photo(self, object):
         if object.photo:
             return mark_safe(f"<img src='{object.photo.url}' width=50>")
