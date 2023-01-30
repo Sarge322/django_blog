@@ -14,6 +14,15 @@
     <tr>
         <td valign=top>
 <!--TOP MENU ---->
+        {% for match in matches %}
+    <div style="background-color:
+        {% ifchanged match.ballot_id %}
+            {% cycle "red" "blue" %}
+        {% else %}
+            gray
+        {% endifchanged %}
+    ">{{ match }}</div>
+{% endfor %}
             {% block mainmenu %}
                 <div class="header">
                     <ul id="mainmenu" class="mainmenu">
@@ -27,6 +36,8 @@
 <!--TOP MENU ---->
                         {{ request.user.is_autenticated }}
                         {% if request.user.is_authenticated %}
+                            <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+
                             <!-- sign in	unsigned			-->
                             <li class="last">{{ user.username }} | <a href="{% url 'logout' %}">Выйти</a></li>
                             <!-- sign in				-->
