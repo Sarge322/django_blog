@@ -426,3 +426,151 @@
 2023-01-28 23:19:33,115 WARNING  basehttp basehttp.py "GET /static/css/admin.css HTTP/1.1" 404 17 
 2023-01-28 23:19:33,184 WARNING  log log.py Not Found: /media/photos/2023/01/02/slug-3612269_1.jpg 
 2023-01-28 23:19:33,185 WARNING  basehttp basehttp.py "GET /media/photos/2023/01/02/slug-3612269_1.jpg HTTP/1.1" 404 17 
+2023-01-30 23:57:19,770 ERROR  log log.py Internal Server Error: / 
+Traceback (most recent call last):
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for '' not found. '' is not a valid view function or pattern name.
+2023-01-30 23:57:19,792 ERROR  basehttp basehttp.py "GET / HTTP/1.1" 500 145 
+2023-01-30 23:57:20,088 WARNING  log log.py Not Found: /favicon.ico 
+2023-01-30 23:57:20,089 WARNING  basehttp basehttp.py "GET /favicon.ico HTTP/1.1" 404 17 
+2023-01-31 01:36:04,314 ERROR  log log.py Internal Server Error: / 
+Traceback (most recent call last):
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for '' not found. '' is not a valid view function or pattern name.
+2023-01-31 01:36:04,334 ERROR  basehttp basehttp.py "GET / HTTP/1.1" 500 145 
+2023-01-31 01:36:04,528 WARNING  log log.py Not Found: /favicon.ico 
+2023-01-31 01:36:04,530 WARNING  basehttp basehttp.py "GET /favicon.ico HTTP/1.1" 404 17 
+2023-01-31 01:37:13,963 ERROR  log log.py Internal Server Error: / 
+Traceback (most recent call last):
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\response.py", line 83, in rendered_content
+    return template.render(context, self._request)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 150, in render
+    return compiled_parent._render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\test\utils.py", line 100, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\loader_tags.py", line 62, in render
+    result = block.nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 315, in render
+    return nodelist.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\template\defaulttags.py", line 449, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\base.py", line 86, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\Tom\PycharmProjects\django_blog\blog_venv\lib\site-packages\django\urls\resolvers.py", line 698, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for '' not found. '' is not a valid view function or pattern name.
+2023-01-31 01:37:13,967 ERROR  basehttp basehttp.py "GET / HTTP/1.1" 500 145 

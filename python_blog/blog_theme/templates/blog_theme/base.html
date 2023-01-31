@@ -14,15 +14,6 @@
     <tr>
         <td valign=top>
 <!--TOP MENU ---->
-        {% for match in matches %}
-    <div style="background-color:
-        {% ifchanged match.ballot_id %}
-            {% cycle "red" "blue" %}
-        {% else %}
-            gray
-        {% endifchanged %}
-    ">{{ match }}</div>
-{% endfor %}
             {% block mainmenu %}
                 <div class="header">
                     <ul id="mainmenu" class="mainmenu">
